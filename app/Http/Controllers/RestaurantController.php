@@ -169,7 +169,8 @@ public function update(Request $request, $id)
         }
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard.restaurateur');
+
 }
 
 

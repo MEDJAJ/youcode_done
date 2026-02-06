@@ -107,6 +107,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             @foreach($restaurants as $restairant)
+             @if(!$restairant->is_delete)
             <div class="card-zoom group relative h-[480px] rounded-[2.5rem] overflow-hidden border border-white/5 bg-slate-900" data-aos="fade-up">
                 <form action="{{ route('favorite.toggle', $restairant->id) }}" method="POST">
                     @csrf
@@ -164,6 +165,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
 
         </div>

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+
 class StatistiqueController extends Controller
 {
    public function statistique(){
 
-    $clients = User::where('role','client')->count();
-    
-$restaurateurs = User::where('role','restaurateur')->count();
+    $clients = Role::findByName('client')->users->count();
+    $restaurateurs = Role::findByName('restaurateur')->users->count();
 
     
     $restaurants = Restaurant::count();

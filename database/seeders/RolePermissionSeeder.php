@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -8,31 +10,33 @@ class RolePermissionSeeder extends Seeder
 {
     public function run()
     {
-       
-        Permission::create(['name' => 'create restaurant']);
-        Permission::create(['name' => 'edit restaurant']);
-        Permission::create(['name' => 'delete restaurant']);
-        Permission::create(['name' => 'delete any restaurant']);
-        Permission::create(['name' => 'view statistiques']);
-        Permission::create(['name' => 'create reservation']);
 
-      
-        $admin = Role::create(['name' => 'admin']);
-        $restaurateur = Role::create(['name' => 'restaurateur']);
-        $client = Role::create(['name' => 'client']);
+        Permission::firstOrCreate(['name' => 'create restaurant']);
+        Permission::firstOrCreate(['name' => 'edit own restaurant']);
+        Permission::firstOrCreate(['name' => 'delete own restaurant']);
+        Permission::firstOrCreate(['name' => 'view restaurants']);
+        Permission::firstOrCreate(['name' => 'add favorite']);
+        Permission::firstOrCreate(['name' => 'view details']);
+        Permission::firstOrCreate(['name' => 'manage restaurants']);
+        Permission::firstOrCreate(['name' => 'view statistics']);
 
-    
+        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $restaurateur = Role::firstOrCreate(['name' => 'restaurateur']);
+        $client = Role::firstOrCreate(['name' => 'client']);
 
-        $admin->givePermissionTo(Permission::all());
+        $admin->syncPermissions(Permission::all());
 
-        $restaurateur->givePermissionTo([
+        $restaurateur->syncPermissions([
             'create restaurant',
-            'edit restaurant',
-            'delete restaurant'
+            'edit own restaurant',
+            'delete own restaurant',
+            'view restaurants'
         ]);
 
-        $client->givePermissionTo([
-            'create reservation'
+        $client->syncPermissions([
+            'view restaurants',
+            'add favorite',
+            'view details'
         ]);
     }
 }

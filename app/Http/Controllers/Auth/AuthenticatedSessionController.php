@@ -30,20 +30,19 @@ class AuthenticatedSessionController extends Controller
     $user = $request->user();
 
     
-    if($user->role === 'admin') {
-        return redirect()->route('dashboard.admin');
-    }
+   
 
-    if($user->role === 'restaurateur'){
-        return redirect()->route('dashboard.restaurateur');
-    }
+        // Redirection selon le rôle avec Spatie
+        if ($user->hasRole('admin')) {
+            return redirect()->route('dashboard.admin');
+        } elseif ($user->hasRole('restaurateur')) {
+            return redirect()->route('dashboard.restaurateur');
+        } elseif ($user->hasRole('client')) {
+            return redirect()->route('dashboard.client');
+        }
 
-    if($user->role === 'client') {
-        return redirect()->route('dashboard.client');
-    }
-
- 
-    return redirect()->route('dashboard');
+        // Cas par défaut
+        return redirect('/');
 }
 
 

@@ -45,7 +45,7 @@
             
         @foreach($restaurants as $restaurant)
 
-
+ @if(!$restaurant->is_delete)
             <div class="fav-card relative rounded-[2rem] overflow-hidden group">
                 <button class="remove-btn absolute top-5 right-5 z-20 bg-red-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -77,6 +77,7 @@
                     </button>
                 </div>
             </div>
+            @endif
 
 @endforeach
 
