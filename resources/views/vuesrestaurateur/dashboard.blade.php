@@ -109,6 +109,13 @@
                                 </svg>
                             </button>
                         </form>
+
+                         <form action="{{ route('restaurant.schedule',$restaurant->id)}}" method="GET">
+                            @csrf
+                            <button type="submit" class="bg-green-500/20 backdrop-blur-md hover:bg-green-600 p-2.5 rounded-xl shadow-lg transition duration-300 text-white">
+                              gérer disponibiliter
+                            </button>
+                        </form>
                     </div>
                     @endif
                     

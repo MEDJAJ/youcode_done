@@ -7,6 +7,8 @@ use App\Models\Restaurant;
 use App\Models\Photo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\RestaurantHour;
+use App\Models\ClosureException;
 
 class RestaurantController extends Controller
 {
@@ -211,4 +213,49 @@ public function destroysoft($id)
 
 
 
+
+public function show($id)
+{
+    $restaurant = DB::table('restaurants')
+        ->select('id','nom', 'location', 'type_de_cuisin')
+        ->where('id', $id)
+        ->first();
+
+
+    return view('vuesclient.reservation',compact('restaurant'));
 }
+
+
+public function disponible($id){
+   
+    return view('vuesrestaurateur.disponibiliter',compact('id'));
+}
+
+
+
+
+
+     public function getSchedule($id)
+    {
+        // Récupérer tous les horaires du restaurant
+        $hours = RestaurantHour::where('restaurant_id', $id)
+                    ->orderBy('day')
+                    ->get();
+
+        // Récupérer toutes les fermetures exceptionnelles
+        $closures = ClosureException::where('restaurant_id', $id)
+                    ->orderBy('date')
+                    ->get();
+
+                   
+
+       
+        return view('vuesrestaurateur.disponibiliter', compact('hours', 'closures', 'id'));
+    }
+}
+
+
+
+
+
+

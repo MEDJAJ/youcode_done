@@ -7,7 +7,14 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\StatistiqueController;
+use App\Http\Controllers\RestaurantHourController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\PaiymentController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\FacureController;
 use App\Models\Restaurant;
+
+use App\Http\Controllers\ClosureExceptionController;
 
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -85,6 +92,33 @@ Route::middleware(['auth','role:restaurateur'])->group(function () {
         [RestaurantController::class,'destory']
     )->name('restaurants.destroy');
 
+
+    Route::get('/disponibiliter/{id}', [RestaurantController::class,"disponible"])->name('restaurants.diponibility');
+
+        Route::get('/voir_mes_notification', function () {
+        return view('vuesrestaurateur.voir_notification');
+    });
+
+
+    Route::get('/notifications', function () {
+    $notifications = auth()->user()->notifications;
+    return view('vuesrestaurateur.voir_notification', compact('notifications'));
+});
+
+
+    Route::post('/restaurant-hours', [RestaurantHourController::class, 'store'])->name('restaurant-hours.store');
+
+
+Route::post('/closure-exceptions', [ClosureExceptionController::class, 'store'])->name('closure-exceptions.store');
+
+Route::get('/restaurants/{id}/schedule', [RestaurantController::class, 'getSchedule'])->name('restaurant.schedule');
+
+
+Route::delete('/restaurant-hours/{id}', [RestaurantHourController::class, 'deleteHour'])->name('restaurant-hours.delete');
+
+
+Route::delete('/closure-exceptions/{id}', [ClosureExceptionController::class, 'deleteClosure'])->name('closure-exceptions.delete');
+
 });
 
 
@@ -107,6 +141,32 @@ Route::middleware(['auth','role:client'])->group(function () {
     Route::get('/restaurants/favorite',
         [FavoriteController::class,'afficher']
     )->name('restaurants.favorite');
+
+
+      Route::get('/reservation/{id}',[RestaurantController::class,'show']) ->name('restaurant.show');
+
+Route::get('/paiement/{id}',[PaiymentController::class,'show'])->name('paiement.show');
+
+Route::get('/restaurant/{id}/slots', [ReservationController::class, 'getSlots']);
+
+   Route::post('/reservations', [ReservationController::class, 'store'])
+    ->name('reservations.store');
+
+   Route::get('/facture/{reservation}', [FacureController::class, 'show'])
+    ->name('facture.show');
+
+
+Route::post('/stripe/checkout/{reservation}', [StripeController::class, 'checkout'])
+    ->name('stripe.checkout');
+
+Route::get('/stripe/success/{reservation}', [StripeController::class, 'success'])
+    ->name('stripe.success');
+
+
+    Route::get('/facture/{reservation}/download',
+    [FacureController::class, 'download']
+)->name('facture.download');
+
 
 });
 

@@ -53,6 +53,12 @@
             transform: translateY(-5px);
         }
 
+        .table-container {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
         .nav-link { position: relative; transition: color 0.3s; }
         .nav-link.active::after {
             content: '';
@@ -114,58 +120,128 @@
             <div class="h-[1px] flex-1 bg-white/5 mx-8"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             
-            <div class="stat-card p-10 rounded-[2.5rem] relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                </div>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Clients</p>
-                <h3 class="text-5xl font-black text-white mb-2">{{$clients}}</h3>
-                <p class="text-green-500 text-xs font-bold">+12% ce mois</p>
+            <div class="stat-card p-8 rounded-[2rem] relative overflow-hidden group">
+                <p class="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">Clients</p>
+                <h3 class="text-4xl font-black text-white mb-2">{{$clients}}</h3>
+                <p class="text-green-500 text-[10px] font-bold">+12% ce mois</p>
             </div>
 
-            <div class="stat-card p-10 rounded-[2.5rem] relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Restaurateurs</p>
-                <h3 class="text-5xl font-black text-white mb-2">{{$restaurateurs}}</h3>
-                <p class="text-orange-500 text-xs font-bold">Inscriptions actives</p>
+            <div class="stat-card p-8 rounded-[2rem] relative overflow-hidden group">
+                <p class="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">Restaurateurs</p>
+                <h3 class="text-4xl font-black text-white mb-2">{{$restaurateurs}}</h3>
+                <p class="text-orange-500 text-[10px] font-bold">Inscriptions actives</p>
             </div>
 
-            <div class="stat-card p-10 rounded-[2.5rem] relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                </div>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Restaurants</p>
-                <h3 class="text-5xl font-black text-white mb-2">{{$restaurants}}</h3>
-                <p class="text-slate-400 text-xs font-bold italic">Base de données totale</p>
+            <div class="stat-card p-8 rounded-[2rem] relative overflow-hidden group">
+                <p class="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">Restaurants</p>
+                <h3 class="text-4xl font-black text-white mb-2">{{$restaurants}}</h3>
+                <p class="text-slate-400 text-[10px] font-bold italic">Base totale</p>
             </div>
 
-            <div class="stat-card p-10 rounded-[2.5rem] bg-orange-500/5 border-orange-500/20 relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-30 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <p class="text-orange-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Restaurants Actifs</p>
-                <h3 class="text-5xl font-black text-white mb-2">{{$restaurantsActifs}}</h3>
+            <div class="stat-card p-8 rounded-[2rem] bg-orange-500/5 border-orange-500/20 relative overflow-hidden group">
+                <p class="text-orange-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">Restaurants Actifs</p>
+                <h3 class="text-4xl font-black text-white mb-2">{{$restaurantsActifs}}</h3>
                 <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <p class="text-white text-xs font-bold uppercase tracking-tighter">En ligne</p>
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                    <p class="text-white text-[10px] font-bold uppercase tracking-tighter">En ligne</p>
                 </div>
             </div>
 
+            <div class="stat-card p-8 rounded-[2rem] relative overflow-hidden group border-emerald-500/20 bg-emerald-500/5">
+                <div class="absolute top-0 right-0 p-4 opacity-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <p class="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">
+                    Réservations Confirmées
+                </p>
+                <h3 class="text-4xl font-black text-white mb-2">
+                    {{ $reservationsConfirmees }}
+                </h3>
+                <p class="text-emerald-400 text-[10px] font-bold uppercase tracking-widest">
+                    Paiements validés
+                </p>
+            </div>
         </div>
 
-      
+        <div class="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+            <div class="space-y-6">
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] text-orange-500 flex items-center gap-4">
+                    Top Restaurants <span class="h-[1px] flex-1 bg-white/5"></span>
+                </h2>
+                <div class="table-container rounded-3xl overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white/5 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                            <tr>
+                                <th class="p-6">Établissement</th>
+                                <th class="p-6 text-right">Volume Réservations</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            @foreach($topRestaurants as $item)
+                                <tr class="hover:bg-white/[0.03] transition-colors group">
+                                    <td class="p-6 text-sm font-medium text-slate-300 group-hover:text-white">{{ $item->restaurant->nom ?? '-' }}</td>
+                                    <td class="p-6 text-right font-black text-orange-400 text-lg">{{ $item->total }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] text-orange-500 flex items-center gap-4">
+                    Pics Horaires <span class="h-[1px] flex-1 bg-white/5"></span>
+                </h2>
+                <div class="table-container rounded-3xl overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white/5 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                            <tr>
+                                <th class="p-6">Tranche Horaire</th>
+                                <th class="p-6 text-right">Affluence</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            @foreach($picsHoraires as $pic)
+                                <tr class="hover:bg-white/[0.03] transition-colors group">
+                                    <td class="p-6 text-sm font-medium text-slate-300">{{ $pic->time }}</td>
+                                    <td class="p-6 text-right font-black text-orange-400 text-lg">{{ $pic->total }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 space-y-6">
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] text-orange-500 flex items-center gap-4">
+                    Répartition par Ville <span class="h-[1px] flex-1 bg-white/5"></span>
+                </h2>
+                <div class="table-container rounded-3xl overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white/5 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                            <tr>
+                                <th class="p-6">Ville</th>
+                                <th class="p-6 text-right">Nombre d'établissements</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            @foreach($restaurantsParVille as $ville)
+                                <tr class="hover:bg-white/[0.03] transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-300">{{ $ville->location }}</td>
+                                    <td class="p-6 text-right font-black text-orange-400 text-lg">{{ $ville->total }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div> 
     </main>
 
 </body>

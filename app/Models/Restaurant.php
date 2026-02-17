@@ -42,4 +42,11 @@ public function isFavorited()
 }
 
 
+public function hours()
+{
+    return $this->hasMany(RestaurantHour::class);
+}
+
+
+
 }

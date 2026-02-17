@@ -17,7 +17,14 @@
     <div class="max-w-4xl mx-auto">
         
         <section class="section-divider">
-            <h1 class="text-4xl font-bold text-orange-500 mb-4">{{$restaurants->nom}}</h1>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <h1 class="text-4xl font-bold text-orange-500">{{$restaurants->nom}}</h1>
+                
+                <a href="{{ route('restaurant.show', $restaurants->id) }}" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-xl transition shadow-lg text-center uppercase tracking-wider text-sm">
+                    Réservation
+                </a>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
                 <p><span class="text-slate-500 font-semibold">📍 Emplacement :</span> {{$restaurants->location}}</p>
                 <p><span class="text-slate-500 font-semibold">🍽️ Cuisine :</span> {{$restaurants->type_de_cuisin}}</p>
@@ -81,19 +88,18 @@
                     <div class="p-6 rounded-2xl bg-white/5 border border-white/5 shadow-sm">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 font-bold text-xs">
-                             {{ $comm->user->name}}
+                             {{ substr($comm->user->name, 0, 1) }}
                             </div>
                             <div>
                                 <p class="text-sm font-bold text-white">{{$comm->user->name}}</p>
-                                <p class="text-[10px] text-slate-500">{{ $comm->created_at->format('d/m/Y H:i') }}
-</p>
+                                <p class="text-[10px] text-slate-500">{{ $comm->created_at->format('d/m/Y H:i') }}</p>
                             </div>
                         </div>
                         <p class="text-slate-300 text-sm leading-relaxed">
                           {{ $comm->contenu}}
                         </p>
                     </div>
-         @endforeach
+             @endforeach
             </div>
         </section>
     </div>
