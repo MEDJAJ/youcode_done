@@ -11,9 +11,9 @@ class CreateClosureExceptionsTable extends Migration
         Schema::create('closure_exceptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id')->constrained()->onDelete('cascade');
-            $table->date('date'); // date de fermeture exceptionnelle
-            $table->string('reason'); // raison de la fermeture
-            $table->timestamps(); // created_at et updated_at
+            $table->date('date'); 
+            $table->string('reason');
+            $table->timestamps(); 
         });
     }
 

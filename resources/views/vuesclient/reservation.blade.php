@@ -78,7 +78,6 @@
           
           <form method="POST" action="{{ route('reservations.store') }}">
     @csrf
-
     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
     <input type="hidden" name="date" id="formDate">
     <input type="hidden" name="time" id="formTime">
